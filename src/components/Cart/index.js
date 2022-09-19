@@ -163,7 +163,7 @@ class Cart extends PureComponent {
                         {(this.state.totalPrice * 0.21).toFixed(2)}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
-                        {this.state.count}
+                        {this.props.ProductContainer}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
                         {this.state.totalPrice}
@@ -225,6 +225,7 @@ class Cart extends PureComponent {
 const mapStateToProps = state => {
     return {
         products: state.cartReducer.cartProducts,
+        productsCounter: state.cartReducer.productsCounter,
         selectedCurrency: state.currencyReducer.selectedCurrency
     }
 }
