@@ -86,7 +86,13 @@ class Header extends PureComponent {
 
                 <S.ActionItem onClick={() => this.toggleMiniCart()}>
                     <img src={Cart} alt="cart" />
-                
+                    {
+                        this.props.productsCounter > 0 &&
+                        this.props.productsCounter < 10 ?
+                        <S.CartProductsQuantity>{this.props.productsCounter}</S.CartProductsQuantity>
+                        :
+                        <S.CartProductsQuantity>9+</S.CartProductsQuantity>
+                    }
                     <MiniCart />
                 </S.ActionItem>
             </>
@@ -131,7 +137,8 @@ const mapStateToProps = state => {
         currencies: state.currencyReducer.currencies,
         selectedCurrency: state.currencyReducer.selectedCurrency,
         isCurrencySelectorOpen: state.currencyReducer.isCurrencySelectorOpen,
-        isMiniCartOpen: state.cartReducer.isMiniCartOpen
+        isMiniCartOpen: state.cartReducer.isMiniCartOpen,
+        productsCounter: state.cartReducer.productsCounter
     }
 }
 
