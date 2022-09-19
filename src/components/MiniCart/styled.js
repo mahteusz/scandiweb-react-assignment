@@ -25,6 +25,15 @@ export const CartContainer = styled.div`
     min-width:340px;
     overflow-y:auto;
     cursor:auto;
+
+    &::-webkit-scrollbar {
+        width: 20px;
+        border:2px solid #aaa;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #5ECE7B;
+    }
 `
 
 export const CartTitleContainer = styled.div`
