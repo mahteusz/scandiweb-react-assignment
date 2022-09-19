@@ -163,7 +163,7 @@ class Cart extends PureComponent {
                         {(this.state.totalPrice * 0.21).toFixed(2)}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
-                        {this.props.ProductContainer}
+                        {this.props.productsCounter}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
                         {this.state.totalPrice}

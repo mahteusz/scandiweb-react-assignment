@@ -33,7 +33,7 @@ const removeProduct = (productToBeRemoved, products) => {
   return productsUpdated
 }
 
-export const cartReducer = (state = initialState, { type, payload }) => {
+export const cartReducer = (state = initialState, { type, payload }) => {  
   switch (type) {
     case ActionTypes.ADD_PRODUCT_TO_CART:
       return {
