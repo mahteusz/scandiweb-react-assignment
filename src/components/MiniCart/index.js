@@ -200,27 +200,27 @@ class MiniCart extends PureComponent {
             <>
                 {
                     this.props.isOpen ?
-                        <>
-                            <S.CartContainer onClick={(e) => e.stopPropagation()}>
-                                <S.CartTitleContainer>
-                                    <S.CartTitle>
-                                        My Bag
-                                    </S.CartTitle>
-                                    <S.CartItemsNumber>
-                                        {`, ${this.props.productsCounter} ${this.props.productsCounter > 1 ? 'items' : 'item'}`}
-                                    </S.CartItemsNumber>
-                                </S.CartTitleContainer>
-                                {
-                                    this.props.productsCounter > 0 ? 
-                                    this.renderCartData()
-                                    :
-                                    this.renderEmptyCartData()
-                                }
-                            </S.CartContainer>
-                            <S.Overlay />
-                        </>
-                        :
-                        <></>
+                    <>
+                        <S.CartContainer onClick={(e) => e.stopPropagation()}>
+                            <S.CartTitleContainer>
+                                <S.CartTitle>
+                                    My Bag
+                                </S.CartTitle>
+                                <S.CartItemsNumber>
+                                    {`, ${this.props.productsCounter} ${this.props.productsCounter > 1 ? 'items' : 'item'}`}
+                                </S.CartItemsNumber>
+                            </S.CartTitleContainer>
+                            {
+                                this.props.productsCounter > 0 ? 
+                                this.renderCartData()
+                                :
+                                this.renderEmptyCartData()
+                            }
+                        </S.CartContainer>
+                        <S.Overlay />
+                    </>
+                    :
+                    <></>
                 }
             </>
         )

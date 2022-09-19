@@ -15,7 +15,6 @@ export const getCategoriesAndProducts = async () => {
                  "attributes {name, type, items{value}}",
                  "description",
                  "inStock"
-                
                 ]
             ))
     

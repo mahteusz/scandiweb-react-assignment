@@ -37,8 +37,6 @@ class App extends PureComponent {
     
   }
 
-  //TO-DO
-  // => POP UP WHEN PRODUCT IS ADDED TO CART/OPEN CART???
   render() {
     return (
       <BrowserRouter>

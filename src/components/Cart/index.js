@@ -202,7 +202,6 @@ class Cart extends PureComponent {
             imgIndex[prod.id] = 0
         })
         this.setState({imgIndex:imgIndex})
-        console.log(this.state)
     }
 
     setImgIndex(prod, step) {
@@ -218,8 +217,6 @@ class Cart extends PureComponent {
     componentDidMount() {
         this.setAllImgIndex()
     }
-
-
 
     render() {
         return(

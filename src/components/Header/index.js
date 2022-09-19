@@ -25,7 +25,7 @@ class Header extends PureComponent {
     }
 
     toggleCurrencySelector() {
-        if (this.props.isMiniCartOpen)
+        if(this.props.isMiniCartOpen)
             this.props.toggleMiniCart()
 
         this.props.toggleCurrencySelector()

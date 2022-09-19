@@ -149,7 +149,6 @@ class ProductPage extends PureComponent {
 
     handleAddProductToCart(e) {
         e.preventDefault()
-        console.log(this.state.selectedAttributes)
         this.props.addProductToCart({
             ...this.props.product,
             selectedAttributes:this.state.selectedAttributes,
