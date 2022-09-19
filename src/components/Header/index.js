@@ -23,14 +23,14 @@ class Header extends PureComponent {
         this.renderMenuItems = this.renderMenuItems.bind(this)
         this.renderActionItems = this.renderActionItems.bind(this)
     }
-    
+
     toggleCurrencySelector() {
-        if(this.props.isMiniCartOpen)
+        if (this.props.isMiniCartOpen)
             this.props.toggleMiniCart()
-        
+
         this.props.toggleCurrencySelector()
     }
-    
+
     toggleMiniCart() {
         this.props.toggleMiniCart()
     }
@@ -40,26 +40,26 @@ class Header extends PureComponent {
     }
 
     checkClick(event) {
-        if(this.currencySelectorRef &&
-           !this.currencySelectorRef.current.contains(event.target) &&
+        if (this.currencySelectorRef &&
+            !this.currencySelectorRef.current.contains(event.target) &&
             this.props.isCurrencySelectorOpen) {
-                this.toggleCurrencySelector()
+            this.toggleCurrencySelector()
         }
     }
 
     renderMenuItems() {
         return (
             this.props.categories?.map(category => {
-                return(
-                    <S.MenuItem 
+                return (
+                    <S.MenuItem
                         highlight={this.props.selectedCategory === category.name}
-                        >
+                    >
                         <S.CategoryName
                             highlight={this.props.selectedCategory === category.name}
                             onClick={() => this.handleNavigation(category.name)}
                             to={`/category/${category.name}`}
-                            >
-                                {category.name}
+                        >
+                            {category.name}
                         </S.CategoryName>
                     </S.MenuItem>
                 )
@@ -88,10 +88,9 @@ class Header extends PureComponent {
                     <img src={Cart} alt="cart" />
                     {
                         this.props.productsCounter > 0 &&
-                        this.props.productsCounter < 10 ?
-                        <S.CartProductsQuantity>{this.props.productsCounter}</S.CartProductsQuantity>
-                        :
-                        <S.CartProductsQuantity>9+</S.CartProductsQuantity>
+                        <S.CartProductsQuantity>{this.props.productsCounter < 10 ?
+                                                 this.props.productsCounter : '9+'}
+                        </S.CartProductsQuantity>
                     }
                     <MiniCart />
                 </S.ActionItem>

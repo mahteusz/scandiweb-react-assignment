@@ -92,15 +92,14 @@ export const CurrencySelectorItem = styled.div`
 export const CartProductsQuantity = styled.div`
     width:20px;
     height:20px;
-    border-radius:50%;
     background-color:black;
+    border-radius:50%;
     position:absolute;
     top:-7px;
     right:-5px;
+    color:white;
+    font-family:'Roboto';
     display:flex;
     justify-content:center;
     align-items:center;
-    color:white;
-    font-family:'Roboto';
-    font-weight:700;
 `
