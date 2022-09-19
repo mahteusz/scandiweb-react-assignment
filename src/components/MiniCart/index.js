@@ -9,11 +9,6 @@ class MiniCart extends PureComponent {
     constructor(props) {
         super(props)
 
-        this.state = {
-            count: 0,
-            totalPrice: 0
-        }
-
         this.handleAddProductToCart = this.handleAddProductToCart.bind(this)
         this.handleRemoveProductFromCart = this.handleRemoveProductFromCart.bind(this)
         this.renderSwatchAttribute = this.renderSwatchAttribute.bind(this)
@@ -154,7 +149,7 @@ class MiniCart extends PureComponent {
 
                 <S.TotalContentValues>
                     {this.props.selectedCurrency.symbol}
-                    {this.state.totalPrice}
+                    {this.props.totalPrices[this.props.selectedCurrency.label]}
                 </S.TotalContentValues>
             </S.TotalContainer>
         )
@@ -191,10 +186,6 @@ class MiniCart extends PureComponent {
                 </>
     }
 
-    componentDidMount() {
-        this.setState(calculateTotal(this.props.products, this.props.selectedCurrency))
-    }
-
     componentDidUpdate() {
         if (this.props.isOpen) {
             document.body.style.overflow = 'hidden'
@@ -202,7 +193,6 @@ class MiniCart extends PureComponent {
             document.body.style.overflow = 'unset'
         }
 
-        this.setState(calculateTotal(this.props.products, this.props.selectedCurrency))
     }
 
     render() {
@@ -242,6 +232,7 @@ const mapStateToProps = state => {
         isOpen: state.cartReducer.isMiniCartOpen,
         products: state.cartReducer.cartProducts,
         productsCounter: state.cartReducer.productsCounter,
+        totalPrices: state.cartReducer.totalPrices,
         selectedCurrency: state.currencyReducer.selectedCurrency
     }
 }

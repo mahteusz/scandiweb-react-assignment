@@ -3,7 +3,8 @@ import { ActionTypes } from "../constants"
 const initialState = {
   cartProducts: [],
   isMiniCartOpen: false,
-  productsCounter: 0
+  productsCounter: 0,
+  totalPrices: {}
 }
 
 const stackProductsWithSameAttributes = (productToBeAdded, products) => {
@@ -33,17 +34,36 @@ const removeProduct = (productToBeRemoved, products) => {
   return productsUpdated
 }
 
+const updatePrices = (prices, total, add=true) => {
+  const newPrices = {}
+  if(add)
+    prices.forEach(price => {
+        newPrices[price.currency.label] = parseFloat((price.amount + (total?.[price.currency.label] || 0)).toFixed(2))
+    })
+  
+  else 
+    prices.forEach(price => {
+      newPrices[price.currency.label] = parseFloat((total[price.currency.label] - price.amount).toFixed(2))
+  })
+
+  console.log(newPrices)
+
+  return newPrices
+} 
+
 export const cartReducer = (state = initialState, { type, payload }) => {  
   switch (type) {
     case ActionTypes.ADD_PRODUCT_TO_CART:
       return {
         ...state, cartProducts: stackProductsWithSameAttributes(payload, state.cartProducts),
-        productsCounter: state.productsCounter + 1
+        productsCounter: state.productsCounter + 1,
+        totalPrices: updatePrices(payload.prices, state.totalPrices)
       }
     case ActionTypes.REMOVE_PRODUCT_FROM_CART:
       return {
         ...state, cartProducts: removeProduct(payload, state.cartProducts),
-        productsCounter: state.productsCounter - 1
+        productsCounter: state.productsCounter - 1,
+        totalPrices: updatePrices(payload.prices, state.totalPrices, false)
       }
     case ActionTypes.TOGGLE_MINI_CART:
       return { ...state, isMiniCartOpen: !state.isMiniCartOpen }

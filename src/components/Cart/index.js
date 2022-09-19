@@ -3,7 +3,7 @@ import * as S from './styled'
 import { connect } from "react-redux";
 import Header from "../Header";
 import { ProductBrand, AttributeName, Price } from "../ProductPage/styled";
-import { getSelectedCurrencyIndex, calculateTotal } from "../utils";
+import { getSelectedCurrencyIndex } from "../utils";
 import { addProductToCart, removeProductFromCart } from "../../redux/Actions/cartActions";
 import ArrowLeft from "../../images/arrow-left.png"
 import ArrowRight from "../../images/arrow-right.png"
@@ -15,8 +15,6 @@ class Cart extends PureComponent {
 
         this.state = {
             imgIndex: {},
-            count: 0,
-            totalPrice: 0
         }
 
         this.handleAddProductToCart = this.handleAddProductToCart.bind(this)
@@ -162,13 +160,14 @@ class Cart extends PureComponent {
 
                 <S.TotalContentContainer>
                     <S.TotalContentValues>
-                        {(this.state.totalPrice * 0.21).toFixed(2)}
+                        {(this.props.totalPrices[this.props.selectedCurrency.label] * 0.21).toFixed(2)}
+                        {/* {(this.state.totalPrice * 0.21).toFixed(2)} */}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
                         {this.props.productsCounter}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
-                        {this.state.totalPrice}
+                        {this.props.totalPrices[this.props.selectedCurrency.label]}
                     </S.TotalContentValues>
                 </S.TotalContentContainer>           
             </S.TotalContainer>
@@ -215,14 +214,9 @@ class Cart extends PureComponent {
     }
 
     componentDidMount() {
-        this.setState(calculateTotal(this.props.products, this.props.selectedCurrency))
         this.setAllImgIndex()
-        console.log(this.props.products)
     }
 
-    componentDidUpdate() {
-        this.setState(calculateTotal(this.props.products, this.props.selectedCurrency)) 
-    }
 
 
     render() {
@@ -249,6 +243,7 @@ const mapStateToProps = state => {
     return {
         products: state.cartReducer.cartProducts,
         productsCounter: state.cartReducer.productsCounter,
+        totalPrices: state.cartReducer.totalPrices,
         selectedCurrency: state.currencyReducer.selectedCurrency
     }
 }

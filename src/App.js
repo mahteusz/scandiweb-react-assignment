@@ -39,7 +39,6 @@ class App extends PureComponent {
 
   //TO-DO
   // => CUSTOM SCROLLBAR ON MINICART
-  // => MESSAGE WHEN CART/MINICART IS EMPTY
   // => POP UP WHEN PRODUCT IS ADDED TO CART/OPEN CART???
   render() {
     return (

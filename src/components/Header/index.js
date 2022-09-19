@@ -100,7 +100,6 @@ class Header extends PureComponent {
 
     componentDidMount() {
         document.addEventListener("mousedown", this.checkClick);
-        console.log("montouuuuuuuuuuuuuuuuuuuuuuuuu")
 
     }
 
