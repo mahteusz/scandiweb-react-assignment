@@ -5,7 +5,7 @@ import * as S from './styled'
 import { setSelectedCategory } from "../../redux/Actions/categoryActions";
 import { addProductToCart } from "../../redux/Actions/cartActions";
 import WhiteCart from '../../images/white-cart.png'
-import { getSelectedCurrencyIndex } from "../utils";
+import { getSelectedCurrencyIndex } from "../utils/cart";
 
 class ProductList extends PureComponent {
     constructor(props) {

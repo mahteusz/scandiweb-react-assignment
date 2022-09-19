@@ -4,7 +4,7 @@ import Header from '../Header'
 import { connect } from "react-redux";
 import { Markup } from 'interweave';
 import { addProductToCart } from '../../redux/Actions/cartActions';
-import { getSelectedCurrencyIndex } from '../utils';
+import { getSelectedCurrencyIndex } from '../utils/cart';
 
 class ProductPage extends PureComponent {
     constructor(props) {

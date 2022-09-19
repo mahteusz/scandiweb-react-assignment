@@ -3,7 +3,7 @@ import * as S from './styled'
 import { connect } from "react-redux";
 import Header from "../Header";
 import { ProductBrand, AttributeName, Price } from "../ProductPage/styled";
-import { getSelectedCurrencyIndex } from "../utils";
+import { getSelectedCurrencyIndex } from "../utils/cart";
 import { addProductToCart, removeProductFromCart } from "../../redux/Actions/cartActions";
 import ArrowLeft from "../../images/arrow-left.png"
 import ArrowRight from "../../images/arrow-right.png"

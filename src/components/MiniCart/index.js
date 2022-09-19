@@ -2,7 +2,7 @@ import { PureComponent } from "react";
 import * as S from './styled'
 import { connect } from "react-redux";
 import { InfoContainer } from "../Cart/styled";
-import { getSelectedCurrencyIndex, calculateTotal } from "../utils";
+import { getSelectedCurrencyIndex } from "../utils/cart";
 import { addProductToCart, removeProductFromCart } from "../../redux/Actions/cartActions";
 
 class MiniCart extends PureComponent {
