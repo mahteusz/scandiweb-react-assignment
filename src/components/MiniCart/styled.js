@@ -25,6 +25,7 @@ export const CartContainer = styled.div`
     min-width:340px;
     overflow-y:auto;
     cursor:auto;
+    scrollbar-gutter: stable;
 
     &::-webkit-scrollbar {
         width: 20px;
@@ -92,7 +93,7 @@ export const AttributeName = styled.span`
 
 export const AttributeContainer = styled.div`
     display:flex;
-    width:150px;
+    width:120px;
     flex-wrap:wrap;
 `
 
