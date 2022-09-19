@@ -166,20 +166,23 @@ export const AddToCartButton = styled.button`
     transition: all 0.3s ease;
     margin-bottom:40px;
 
-    &:hover {
-        cursor:pointer; 
-        transform:scale(1.05);
-        background-color:white;
-        outline:2px solid #5ECE7B;
-        color:#5ECE7B;
-    }
-
     ${props => {
         if(props.disabled) {
             return `
                 opacity:0.4;
             `
-        } 
+        }
+        else {
+            return `
+                &:hover {
+                    cursor:pointer; 
+                    transform:scale(1.05);
+                    background-color:white;
+                    outline:2px solid #5ECE7B;
+                    color:#5ECE7B;
+                }
+            `
+        }
     }}
 `
 
