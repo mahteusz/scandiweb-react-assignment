@@ -13,7 +13,8 @@ export const getCategoriesAndProducts = async () => {
                  "gallery",
                  "prices {amount, currency{label}}",
                  "attributes {name, type, items{value}}",
-                 "description"
+                 "description",
+                 "inStock"
                 
                 ]
             ))

@@ -11,9 +11,17 @@ class ProductList extends PureComponent {
     constructor(props) {
         super(props)
 
+        this.state = {
+            onHover: {}
+        }
+
         this.addProductWithDefaultAttributes = this.addProductWithDefaultAttributes.bind(this)
+        this.renderInStockProduct = this.renderInStockProduct.bind(this)
+        this.renderOutOfStockProduct = this.renderOutOfStockProduct.bind(this)
         this.renderProduct = this.renderProduct.bind(this)
         this.renderProducts = this.renderProducts.bind(this)
+        this.handleOnMouseOver = this.handleOnMouseOver.bind(this)
+        this.handleOnMouseOut = this.handleOnMouseOut.bind(this)
 
     }
 
@@ -32,9 +40,29 @@ class ProductList extends PureComponent {
 
     }
 
-    renderProduct(product) {
+    handleOnMouseOver(productId) {
+        this.setState(prevState =>({
+            onHover: {
+                ...prevState.onHover,
+                [productId]: true
+            }
+        }))
+    }
+
+    handleOnMouseOut(productId) {
+        this.setState(prevState =>({
+            onHover: {
+                ...prevState.onHover,
+                [productId]: false
+            }
+        }))
+    }
+
+    renderInStockProduct(product) {
         return (
-            <S.ProductCard to={`/product/${product.id}`}>
+            <S.ProductCard to={`/product/${product.id}`} 
+                onMouseOver={() => this.handleOnMouseOver(product.id)}
+                onMouseOut={() => this.handleOnMouseOut(product.id)}>
                 <S.ProductImage src={product.gallery[0]} />
                 <S.ProductName>
                     {product.brand} {product.name}
@@ -43,11 +71,43 @@ class ProductList extends PureComponent {
                     {this.props.selectedCurrency?.symbol}
                     {product.prices[getSelectedCurrencyIndex(product, this.props.selectedCurrency)].amount}
                 </S.ProductPrice>
-                <S.AddToCartButton onClick={(e) => this.addProductWithDefaultAttributes(e, product)}>
-                    <img src={WhiteCart} />
-                </S.AddToCartButton>          
+                {
+                    this.state.onHover[product.id] ?
+                    <S.AddToCartButton onClick={(e) => this.addProductWithDefaultAttributes(e, product)}>
+                        <img src={WhiteCart} />
+                    </S.AddToCartButton>  
+                    :
+                    <></>
+                }        
             </S.ProductCard>
         )
+    }
+
+    renderOutOfStockProduct(product){
+        return (
+            <S.OutOfTheStockProductCard 
+                onMouseOver={() => this.handleOnMouseOver(product.id)}
+                onMouseOut={() => this.handleOnMouseOut(product.id)}>
+                <S.ProductImage src={product.gallery[0]} />
+                <S.ProductName>
+                    {product.brand} {product.name}
+                </S.ProductName>
+                <S.ProductPrice key={this.props.selectedCurrency}>
+                    {this.props.selectedCurrency?.symbol}
+                    {product.prices[getSelectedCurrencyIndex(product, this.props.selectedCurrency)].amount}
+                </S.ProductPrice>
+                <S.OutOfTheStockMessage>
+                    out of stock
+                </S.OutOfTheStockMessage>
+            </S.OutOfTheStockProductCard>
+        )
+    }
+
+    renderProduct(product) {
+        if(product.inStock) 
+            return this.renderInStockProduct(product)
+        
+        return this.renderOutOfStockProduct(product)
     }
 
     renderProducts() {
@@ -60,6 +120,11 @@ class ProductList extends PureComponent {
 
     componentDidMount() {
         this.props.setSelectedCategory(this.props.category)
+        const onHover = {}
+        this.props.products.forEach(product => {
+            onHover[product.id] = false
+        })
+        this.setState({onHover: onHover})
     }
 
     render() {

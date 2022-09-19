@@ -83,3 +83,31 @@ export const AddToCartButton = styled.button`
         transform:scale(1.2);
     }
 `
+
+export const OutOfTheStockProductCard = styled.div`
+    opacity:0.5;
+    display:flex;
+    flex-direction:column;
+    padding: 10px 15px;
+    position:relative;
+    color:black;
+    text-decoration:none;
+
+    &:active, &:focus, &:visited {
+        color:inherit;
+    }
+
+    &:nth-child(3n-1) {
+        margin:0 37px;
+    }
+`
+
+export const OutOfTheStockMessage = styled.div`
+    position:absolute;
+    left:50%;
+    top:40%;
+    transform: translateX(-50%);
+    text-transform:uppercase;
+    font-size: 24px;
+    color:#8D8F9A;
+`

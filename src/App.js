@@ -45,7 +45,7 @@ class App extends PureComponent {
         <Routes>
           {
             this.props.categories &&
-            <Route path="/" exact element={<Navigate to={`category/${this.props.categories[0].name}`} />} />
+            <Route path="*" exact element={<Navigate to={`category/${this.props.categories[0].name}`} />} />
           }
           {
             this.props.categories?.map((category) => {
@@ -61,12 +61,13 @@ class App extends PureComponent {
           }
           {
             this.props.products?.map(product => {
-              return (
-                <Route
-                  path={`product/${product.id}`}
-                  element={<ProductPage product={product} />}
-                />
-              )
+              if(product.inStock)
+                return (
+                  <Route
+                    path={`product/${product.id}`}
+                    element={<ProductPage product={product} />}
+                  />
+                )
             })
           }
           <Route path="/cart" element={<Cart />} />

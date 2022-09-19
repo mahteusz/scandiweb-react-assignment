@@ -46,7 +46,6 @@ const updatePrices = (prices, total, add=true) => {
       newPrices[price.currency.label] = parseFloat((total[price.currency.label] - price.amount).toFixed(2))
   })
 
-  console.log(newPrices)
 
   return newPrices
 } 
