@@ -240,4 +240,17 @@ export const CheckOutButton = styled.button`
         outline:2px solid #5ECE7B;
         color:#5ECE7B;
     }
+
+    ${props => {
+        if(props.disabled)
+            return `
+                opacity:0.4
+            `
+    }}
+`
+
+export const EmptyCartMessage = styled.div`
+    font-size:20px;
+    display:block;
+    margin-bottom:24px;
 `

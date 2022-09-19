@@ -25,6 +25,8 @@ class MiniCart extends PureComponent {
         this.renderTotalContainer = this.renderTotalContainer.bind(this)
         this.renderButtonsContainer = this.renderButtonsContainer.bind(this)
         this.renderTextAttributes = this.renderTextAttributes.bind(this)
+        this.renderCartData = this.renderCartData.bind(this)
+        this.renderEmptyCartData = this.renderEmptyCartData.bind(this)
     }
 
     handleAddProductToCart(product) {
@@ -165,11 +167,28 @@ class MiniCart extends PureComponent {
                     View Bag
                 </S.ViewBagButton>
 
-                <S.CheckOutButton>
+                <S.CheckOutButton disabled={this.props.productsCounter < 1}>
                     Check out
                 </S.CheckOutButton>
             </S.ButtonsContainer>
         )
+    }
+
+    renderCartData() {
+        return (
+            <>
+                {this.renderProducts()}
+                {this.renderTotalContainer()}
+                {this.renderButtonsContainer()}
+            </>
+        )
+    }
+
+    renderEmptyCartData() {
+        return <>
+                    <S.EmptyCartMessage>Your cart is currently empty</S.EmptyCartMessage>
+                    {this.renderButtonsContainer()}
+                </>
     }
 
     componentDidMount() {
@@ -201,9 +220,12 @@ class MiniCart extends PureComponent {
                                         {`, ${this.props.productsCounter} ${this.props.productsCounter > 1 ? 'items' : 'item'}`}
                                     </S.CartItemsNumber>
                                 </S.CartTitleContainer>
-                                {this.renderProducts()}
-                                {this.renderTotalContainer()}
-                                {this.renderButtonsContainer()}
+                                {
+                                    this.props.productsCounter > 0 ? 
+                                    this.renderCartData()
+                                    :
+                                    this.renderEmptyCartData()
+                                }
                             </S.CartContainer>
                             <S.Overlay />
                         </>

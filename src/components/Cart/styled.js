@@ -201,3 +201,7 @@ export const OrderButton = styled.div`
     }
 `
 
+export const EmptyCartMessage = styled.span`
+    font-size:25px;
+`
+

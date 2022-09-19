@@ -28,6 +28,8 @@ class Cart extends PureComponent {
         this.renderProductInfo = this.renderProductInfo.bind(this)
         this.renderProductImageContainer = this.renderProductImageContainer.bind(this)
         this.renderTotalContainer = this.renderTotalContainer.bind(this)
+        this.renderCartData = this.renderCartData.bind(this)
+        this.renderEmptyCartData = this.renderEmptyCartData.bind(this)
     }
 
     handleAddProductToCart(product) {
@@ -173,6 +175,26 @@ class Cart extends PureComponent {
         )
     }
 
+    renderCartData() {
+        return (
+            <>
+                {this.renderProducts()}
+                {this.renderTotalContainer()}
+                <S.OrderButton>
+                    Order
+                </S.OrderButton>
+            </>
+        )
+    }
+
+    renderEmptyCartData() {
+        return (
+            <>
+                <S.EmptyCartMessage>Your cart is currently empty</S.EmptyCartMessage>
+            </>
+        )
+    }
+
     setAllImgIndex(){
         const imgIndex = {}
         this.props.products.forEach(prod => {
@@ -211,11 +233,12 @@ class Cart extends PureComponent {
                     <S.CartTitle>
                         Cart
                     </S.CartTitle>
-                    {this.renderProducts()}
-                    {this.renderTotalContainer()}
-                    <S.OrderButton>
-                        Order
-                    </S.OrderButton>
+                    {
+                        this.props.productsCounter > 0 ?
+                        this.renderCartData()
+                        :
+                        this.renderEmptyCartData()
+                    }
                 </S.Container>
             </>
         )
