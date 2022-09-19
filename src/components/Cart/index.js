@@ -160,6 +160,7 @@ class Cart extends PureComponent {
 
                 <S.TotalContentContainer>
                     <S.TotalContentValues>
+                        {this.props.selectedCurrency.symbol}
                         {(this.props.totalPrices[this.props.selectedCurrency.label] * 0.21).toFixed(2)}
                         {/* {(this.state.totalPrice * 0.21).toFixed(2)} */}
                     </S.TotalContentValues>
@@ -167,6 +168,7 @@ class Cart extends PureComponent {
                         {this.props.productsCounter}
                     </S.TotalContentValues>
                     <S.TotalContentValues>
+                        {this.props.selectedCurrency.symbol}
                         {this.props.totalPrices[this.props.selectedCurrency.label]}
                     </S.TotalContentValues>
                 </S.TotalContentContainer>           
