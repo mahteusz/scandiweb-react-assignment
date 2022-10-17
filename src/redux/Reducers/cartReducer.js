@@ -1,4 +1,5 @@
 import { ActionTypes } from "../constants"
+import { equals } from "../utils/cart"
 
 const initialState = {
   cartProducts: [],
@@ -11,7 +12,7 @@ const stackProductsWithSameAttributes = (productToBeAdded, products) => {
   const productsUpdated = [...products]
   for (let i = 0; i < productsUpdated.length; i++) {
     if (productsUpdated[i].id === productToBeAdded.id) {
-      if (Object.entries(productsUpdated[i].selectedAttributes).sort().toString() === Object.entries(productToBeAdded.selectedAttributes).sort().toString()) {
+      if (equals(productsUpdated[i].selectedAttributes, productToBeAdded.selectedAttributes)){
         productsUpdated[i].quantity += 1
         return productsUpdated
       }
@@ -25,7 +26,7 @@ const removeProduct = (productToBeRemoved, products) => {
   const productsUpdated = [...products]
   for (let i = 0; i < productsUpdated.length; i++) {
     if (productsUpdated[i].id === productToBeRemoved.id) {
-      if (Object.entries(productsUpdated[i]).sort().toString() === Object.entries(productToBeRemoved).sort().toString()) {
+      if (equals(productsUpdated[i], productToBeRemoved)) {
         productsUpdated[i].quantity > 1 ? productsUpdated[i].quantity -= 1 : productsUpdated.splice(i, 1)
         return productsUpdated
       }

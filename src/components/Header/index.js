@@ -16,6 +16,7 @@ class Header extends PureComponent {
         super(props)
 
         this.currencySelectorRef = React.createRef();
+        this.miniCartRef = React.createRef();
         this.checkClick = this.checkClick.bind(this)
         this.toggleCurrencySelector = this.toggleCurrencySelector.bind(this)
         this.toggleMiniCart = this.toggleMiniCart.bind(this)
@@ -44,6 +45,12 @@ class Header extends PureComponent {
             !this.currencySelectorRef.current.contains(event.target) &&
             this.props.isCurrencySelectorOpen) {
             this.toggleCurrencySelector()
+        }
+
+        if(this.miniCartRef &&
+            !this.miniCartRef.current.contains(event.target) &&
+            this.props.isMiniCartOpen){
+                this.toggleMiniCart()
         }
     }
 
@@ -84,12 +91,18 @@ class Header extends PureComponent {
                     <CurrencySelector />
                 </S.ActionItem>
 
-                <S.ActionItem onClick={() => this.toggleMiniCart()}>
+                <S.ActionItem
+                    onClick={() => this.toggleMiniCart()}
+                    ref={this.miniCartRef}
+                >
                     <img src={Cart} alt="cart" />
                     {
                         this.props.productsCounter > 0 &&
-                        <S.CartProductsQuantity>{this.props.productsCounter < 10 ?
-                                                 this.props.productsCounter : '9+'}
+                        <S.CartProductsQuantity>
+                            {
+                                this.props.productsCounter < 10 ?
+                                this.props.productsCounter : '9+'
+                            }
                         </S.CartProductsQuantity>
                     }
                     <MiniCart />
@@ -100,6 +113,11 @@ class Header extends PureComponent {
 
     componentDidMount() {
         document.addEventListener("mousedown", this.checkClick);
+        if(this.props.isMiniCartOpen)
+            this.toggleMiniCart()
+        
+        if(this.props.isCurrencySelectorOpen)
+            this.toggleCurrencySelector()
 
     }
 
