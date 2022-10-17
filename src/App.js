@@ -59,13 +59,12 @@ class App extends PureComponent {
           }
           {
             this.props.products?.map(product => {
-              if(product.inStock)
-                return (
-                  <Route
-                    path={`product/${product.id}`}
-                    element={<ProductPage product={product} />}
-                  />
-                )
+              return (
+                <Route
+                  path={`product/${product.id}`}
+                  element={<ProductPage product={product} />}
+                />
+              )
             })
           }
           <Route path="/cart" element={<Cart />} />

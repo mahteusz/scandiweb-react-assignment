@@ -124,15 +124,20 @@ class ProductPage extends PureComponent {
                     {this.props.selectedCurrency.symbol}
                     {this.props.product.prices[getSelectedCurrencyIndex(this.props.product, this.props.selectedCurrency)].amount}
                 </S.Price>
-                <S.AddToCartButton
-                    type="submit"
-                    onClick={(e) => this.handleAddProductToCart(e)}
-                    disabled={
-                        Object.keys(this.state.selectedAttributes).length !==
-                        this.props.product.attributes.length
-                    }>
-                    Add to cart
-                </S.AddToCartButton>
+                {
+                    this.props.product.inStock ?
+                    <S.AddToCartButton
+                        type="submit"
+                        onClick={(e) => this.handleAddProductToCart(e)}
+                        disabled={
+                            Object.keys(this.state.selectedAttributes).length !==
+                            this.props.product.attributes.length
+                        }>
+                        Add to cart
+                    </S.AddToCartButton>
+                    :
+                    <S.OutOfStock>out of stock</S.OutOfStock>
+                }
                 
                 <Markup content={this.props.product.description} />
             </S.InfoDiv>

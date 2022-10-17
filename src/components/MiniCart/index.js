@@ -68,8 +68,7 @@ class MiniCart extends PureComponent {
                                         return this.renderSwatchAttribute(item, attribute, product)
                                     else
                                         return this.renderTextAttributes(item, attribute, product)
-                                }
-                                )
+                                })
                             }
                         </S.AttributeContainer>
                     </>

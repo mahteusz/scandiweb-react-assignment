@@ -43,6 +43,15 @@ export const ProductCard = styled(Link)`
         cursor:pointer;
         box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19)
     }
+
+    ${props => {
+        if(props.outOfStock){
+            return `
+                opacity:0.5
+            `
+        }
+    }}
+
 `
 
 export const ProductImage = styled.img`

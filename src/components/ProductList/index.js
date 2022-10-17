@@ -16,8 +16,6 @@ class ProductList extends PureComponent {
         }
 
         this.addProductWithDefaultAttributes = this.addProductWithDefaultAttributes.bind(this)
-        this.renderInStockProduct = this.renderInStockProduct.bind(this)
-        this.renderOutOfStockProduct = this.renderOutOfStockProduct.bind(this)
         this.renderProduct = this.renderProduct.bind(this)
         this.renderProducts = this.renderProducts.bind(this)
         this.handleOnMouseOver = this.handleOnMouseOver.bind(this)
@@ -57,12 +55,13 @@ class ProductList extends PureComponent {
             }
         }))
     }
-
-    renderInStockProduct(product) {
+    renderProduct(product) {
         return (
             <S.ProductCard to={`/product/${product.id}`} 
                 onMouseOver={() => this.handleOnMouseOver(product.id)}
-                onMouseOut={() => this.handleOnMouseOut(product.id)}>
+                onMouseOut={() => this.handleOnMouseOut(product.id)}
+                outOfStock={!product.inStock}
+                >
                 <S.ProductImage src={product.gallery[0]} />
                 <S.ProductName>
                     {product.brand} {product.name}
@@ -72,42 +71,20 @@ class ProductList extends PureComponent {
                     {product.prices[getSelectedCurrencyIndex(product, this.props.selectedCurrency)].amount}
                 </S.ProductPrice>
                 {
+                    product.inStock ? 
                     this.state.onHover[product.id] ?
                     <S.AddToCartButton onClick={(e) => this.addProductWithDefaultAttributes(e, product)}>
                         <img src={WhiteCart} />
                     </S.AddToCartButton>  
                     :
                     <></>
-                }        
+                    :
+                    <S.OutOfTheStockMessage>
+                    out of stock
+                    </S.OutOfTheStockMessage>
+                }      
             </S.ProductCard>
         )
-    }
-
-    renderOutOfStockProduct(product){
-        return (
-            <S.OutOfTheStockProductCard 
-                onMouseOver={() => this.handleOnMouseOver(product.id)}
-                onMouseOut={() => this.handleOnMouseOut(product.id)}>
-                <S.ProductImage src={product.gallery[0]} />
-                <S.ProductName>
-                    {product.brand} {product.name}
-                </S.ProductName>
-                <S.ProductPrice key={this.props.selectedCurrency}>
-                    {this.props.selectedCurrency?.symbol}
-                    {product.prices[getSelectedCurrencyIndex(product, this.props.selectedCurrency)].amount}
-                </S.ProductPrice>
-                <S.OutOfTheStockMessage>
-                    out of stock
-                </S.OutOfTheStockMessage>
-            </S.OutOfTheStockProductCard>
-        )
-    }
-
-    renderProduct(product) {
-        if(product.inStock) 
-            return this.renderInStockProduct(product)
-        
-        return this.renderOutOfStockProduct(product)
     }
 
     renderProducts() {

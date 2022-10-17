@@ -186,3 +186,20 @@ export const AddToCartButton = styled.button`
         }
     }}
 `
+
+
+
+export const OutOfStock = styled.div`
+    width:292px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: #bbb;
+    padding:16px 0;
+    color:white;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform:uppercase;
+    margin-bottom:40px;
+
+`
