@@ -127,6 +127,7 @@ export const ImageContainer = styled.div`
 export const ProductImage = styled.img`
     width:200px;
     height:288px;
+    object-fit:contain;
 `
 
 export const ArrowButtonsContainer = styled.div`
