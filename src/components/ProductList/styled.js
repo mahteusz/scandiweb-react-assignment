@@ -48,6 +48,7 @@ export const ProductCard = styled(Link)`
 export const ProductImage = styled.img`
     width:356px;
     height: 338px;
+    object-fit:contain;
     margin-bottom:24px;
 `
 

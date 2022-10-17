@@ -145,6 +145,7 @@ export const ProductImageContainer = styled.div`
 export const ProductImage = styled.img`
     width:121px;
     height:190px;
+    object-fit:contain;
 `
 
 export const ImageContainer = styled.div`

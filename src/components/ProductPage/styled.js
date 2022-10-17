@@ -34,6 +34,7 @@ export const MainImageContainer = styled.div`
 export const MainImage = styled.img`
     width:100%;
     height:100%;
+    object-fit:contain;
 `
 
 export const InfoDiv = styled.div`
