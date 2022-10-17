@@ -18,6 +18,7 @@ class Header extends PureComponent {
         this.currencySelectorRef = React.createRef();
         this.miniCartRef = React.createRef();
         this.checkClick = this.checkClick.bind(this)
+        this.closeOverlay = this.closeOverlay.bind(this)
         this.toggleCurrencySelector = this.toggleCurrencySelector.bind(this)
         this.toggleMiniCart = this.toggleMiniCart.bind(this)
         this.handleNavigation = this.handleNavigation.bind(this)
@@ -26,7 +27,7 @@ class Header extends PureComponent {
     }
 
     toggleCurrencySelector() {
-        if(this.props.isMiniCartOpen)
+        if (this.props.isMiniCartOpen)
             this.props.toggleMiniCart()
 
         this.props.toggleCurrencySelector()
@@ -41,17 +42,22 @@ class Header extends PureComponent {
     }
 
     checkClick(event) {
-        if (this.currencySelectorRef &&
-            !this.currencySelectorRef.current.contains(event.target) &&
-            this.props.isCurrencySelectorOpen) {
-            this.toggleCurrencySelector()
-        }
+        this.closeOverlay(
+            this.currencySelectorRef,
+            event.target,
+            this.props.isCurrencySelectorOpen,
+            this.toggleCurrencySelector)
 
-        if(this.miniCartRef &&
-            !this.miniCartRef.current.contains(event.target) &&
-            this.props.isMiniCartOpen){
-                this.toggleMiniCart()
-        }
+        this.closeOverlay(
+            this.miniCartRef,
+            event.target,
+            this.props.isMiniCartOpen,
+            this.toggleMiniCart)
+    }
+
+    closeOverlay(ref, target, isComponentOpen, toggleComponent) {
+        if (ref && !ref.current.contains(target) && isComponentOpen)
+            toggleComponent()
     }
 
     renderMenuItems() {
@@ -101,7 +107,7 @@ class Header extends PureComponent {
                         <S.CartProductsQuantity>
                             {
                                 this.props.productsCounter < 10 ?
-                                this.props.productsCounter : '9+'
+                                    this.props.productsCounter : '9+'
                             }
                         </S.CartProductsQuantity>
                     }
@@ -113,10 +119,10 @@ class Header extends PureComponent {
 
     componentDidMount() {
         document.addEventListener("mousedown", this.checkClick);
-        if(this.props.isMiniCartOpen)
+        if (this.props.isMiniCartOpen)
             this.toggleMiniCart()
-        
-        if(this.props.isCurrencySelectorOpen)
+
+        if (this.props.isCurrencySelectorOpen)
             this.toggleCurrencySelector()
 
     }
