@@ -133,9 +133,8 @@ class ProductPage extends PureComponent {
                     }>
                     Add to cart
                 </S.AddToCartButton>
-                <S.ProductDescription>
-                    <Markup content={this.props.product.description} />
-                </S.ProductDescription>
+                
+                <Markup content={this.props.product.description} />
             </S.InfoDiv>
         )
     }

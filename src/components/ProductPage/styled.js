@@ -185,9 +185,3 @@ export const AddToCartButton = styled.button`
         }
     }}
 `
-
-export const ProductDescription = styled.div`
-    height:150px;
-    overflow-y:auto;
-`
-
