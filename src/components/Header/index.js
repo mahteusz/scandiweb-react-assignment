@@ -9,6 +9,7 @@ import { connect } from "react-redux"
 import { toggleCurrencySelector, setSelectedCurrency } from "../../redux/Actions/currencyActions";
 import { setSelectedCategory } from "../../redux/Actions/categoryActions";
 import { toggleMiniCart } from "../../redux/Actions/cartActions";
+import { Link } from "react-router-dom";
 
 class Header extends PureComponent {
 
@@ -107,7 +108,7 @@ class Header extends PureComponent {
                         <S.CartProductsQuantity>
                             {
                                 this.props.productsCounter < 10 ?
-                                    this.props.productsCounter : '9+'
+                                this.props.productsCounter : '9+'
                             }
                         </S.CartProductsQuantity>
                     }
@@ -139,9 +140,13 @@ class Header extends PureComponent {
                         {this.renderMenuItems()}
                     </S.NavContainer>
 
-                    <div>
+                    <Link
+                        //Link to first category (ALL but not hardcoding)
+                        onClick={() => this.handleNavigation(this.props.categories[0].name)} 
+                        to={this.props.categories[0].name}
+                    >
                         <img src={Logo} alt="logo" />
-                    </div>
+                    </Link>
 
                     <S.NavContainer>
                         {this.renderActionItems()}
