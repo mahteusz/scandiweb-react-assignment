@@ -3,7 +3,7 @@ import * as S from './styled'
 import { connect } from "react-redux";
 import { InfoContainer } from "../Cart/styled";
 import { getSelectedCurrencyIndex } from "../utils/cart";
-import { addProductToCart, removeProductFromCart } from "../../redux/Actions/cartActions";
+import { addProductToCart, removeProductFromCart, toggleMiniCart } from "../../redux/Actions/cartActions";
 
 class MiniCart extends PureComponent {
     constructor(props) {
@@ -157,7 +157,7 @@ class MiniCart extends PureComponent {
     renderButtonsContainer() {
         return (
             <S.ButtonsContainer>
-                <S.ViewBagButton to="/cart">
+                <S.ViewBagButton to="/cart" onClick={() => this.props.toggleMiniCart()}>
                     View Bag
                 </S.ViewBagButton>
 
@@ -239,7 +239,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProductToCart: product => dispatch(addProductToCart(product)),
-        removeProductFromCart: product => dispatch(removeProductFromCart(product))
+        removeProductFromCart: product => dispatch(removeProductFromCart(product)),
+        toggleMiniCart: () => dispatch(toggleMiniCart()),
     }
 }
 
