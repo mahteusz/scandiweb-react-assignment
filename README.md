@@ -1,7 +1,12 @@
 # About the project
 
-this project is an assignment for a junior react developer position at ScandiWeb.
+This project is an assignment for a junior react developer position at ScandiWeb.
 Made By Sebastião Mateus Marques de Menezes
+
+
+# Preview
+
+https://user-images.githubusercontent.com/43831301/201944507-8fef1a9e-8711-4ef8-82a1-3ac168ece156.mov
  
 # Technologies
 
@@ -19,6 +24,7 @@ Clone the repository
 $ git clone https://github.com/mahteusz/scandiweb-react-assignment.git
 
 Access the folder of the project
+
 $ cd scandiweb-react-assignment
 
 Install the dependencies
